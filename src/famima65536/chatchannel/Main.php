@@ -7,6 +7,8 @@ use pocketmine\plugin\PluginBase;
 
 # utils #
 use famima65536\chatchannel\utils\Translation;
+use famima65536\chatchannel\utils\ChannelManager;
+
 use pocketmine\utils\TextFormat as TF;
 /**
  * [Plugin]
@@ -36,6 +38,9 @@ class Main extends PluginBase {
     $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.enable"));
   }
 
+  /**
+  * 終了処理
+  */
   public function onDisable() {
     $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.disable"));
   }

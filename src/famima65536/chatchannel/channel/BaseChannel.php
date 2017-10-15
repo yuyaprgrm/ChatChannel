@@ -7,7 +7,7 @@ use famima65536\chatchannel\channel\Channel;
 abstract class BaseChannel implements ChatChannel {
 
   private $name, $password;
-  private $id;
+  public $id;
 
   private $members = []; /** @var Player[] */
 
@@ -34,5 +34,9 @@ abstract class BaseChannel implements ChatChannel {
 
   public function __toString() : string {
     return "name: ${this->name}, password: ${this->password}";
+  }
+
+  public function __get(string $name) {
+    return $this->{$name} ?? null;
   }
 }
