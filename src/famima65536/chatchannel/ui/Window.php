@@ -9,7 +9,7 @@ abstract class Window {
   public static $formId = -1;
   public $player, $formId;
 
-  public function __construct(Player $player, int $formId = null) {
+  public function __construct(Player $player) {
     $this->player = $player;
     $this->formId = static::$formId;
   }
