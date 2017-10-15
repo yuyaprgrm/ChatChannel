@@ -11,7 +11,7 @@ interface Channel {
   public function __construct(string $name, string $password = null);
 
   /* send message to player in the channel. */
-  public function sendMessage(string $message);
+  public function onChat(PlayerChatEvent $event);
 
   /* login from out of the channel. */
   public function login(Player $player);
@@ -21,5 +21,5 @@ interface Channel {
 
   /* quit the channnel */
   public function quit(Player $player);
-  
+
 }

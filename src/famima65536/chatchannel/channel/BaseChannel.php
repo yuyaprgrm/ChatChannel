@@ -9,27 +9,27 @@ abstract class BaseChannel implements ChatChannel {
   private $name, $password;
   public $id;
 
-  private $members = []; /** @var Player[] */
+  private $members = []; /** @var Player[] key => value*/
 
-  public function __construct(string $name, string $password) {
-    $this->name     = $name;
+  public function __construct(string $name, string $password = "") {
+    $this->name = $name;
     $this->password = $password;
     $this->members = [];
   }
 
-  public function sendMessage(string $message) : void {
-    foreach($this->members as $player) {
-      $player->sendMessage($this->name." >> ".$message);
-    }
+  public function onChat(PlayerChatEvent $event) : void {
+
   }
 
   public function login(Player $player) {
   }
 
   public function join(Player $player) {
+    $this->members[strtolower($player->getName)] = $player;
   }
 
   public function quit(Player $player) {
+    $this->members[strtolower($player->getName)] = null;
   }
 
   public function __toString() : string {
