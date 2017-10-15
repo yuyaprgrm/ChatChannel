@@ -4,6 +4,7 @@ namespace famima65536\chatchannel\channel;
 
 use pocketmine\event\player\PlayerChatEvent;
 
+use pocketmine\Player;
 /**
  * [Interface]
  * 人の管理

@@ -17,10 +17,11 @@ class ChannelManager {
     var_dump(self::$channels);
   }
 
-  public static function getChannel($id) {
+  public static function getChannel($id) : Channel {
+    return self::$channels[$id] ?? null;
   }
 
-  public static function getPrimaryChannel() {
+  public static function getPrimaryChannel() : Channel {
     return self::getChannel(0);
   }
 
@@ -32,6 +33,13 @@ class ChannelManager {
       return null;
     }
 
-    return self::$channel[$channelId];
+    return self::$channels[$channelId];
+  }
+
+  public static function loginChannel(Player $player, Channel $channel, string $password = "") {
+    if($channel->password === $password or $channel->password === "") { // no password or true password.
+      $channel->join($player);
+      self::$players[strtolower($player->getName())] = $channel->id;
+    }
   }
 }
