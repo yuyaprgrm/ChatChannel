@@ -5,7 +5,7 @@ namespace famima65536\chatchannel\channel;
 use famima65536\chatchannel\channel\Channel;
 use pocketmine\event\player\PlayerChatEvent;
 
-abstract class BaseChannel implements ChatChannel {
+abstract class BaseChannel implements Channel {
 
   private $name, $password;
   public $id;
@@ -18,8 +18,8 @@ abstract class BaseChannel implements ChatChannel {
     $this->members = [];
   }
 
-  public function onChat(PlayerChatEvent $event) : void {
-    $event->setMessage("${this->name} >> ${this->getMessage()}");
+  public function onChat(PlayerChatEvent $event) : bool {
+    $event->setMessage($this->name." >> ".$this->getMessage());
   }
 
   public function login(Player $player) {
@@ -34,7 +34,7 @@ abstract class BaseChannel implements ChatChannel {
   }
 
   public function __toString() : string {
-    return "name: ${this->name}, password: ${this->password}";
+    return "name: ".$this->name.", password: ".$this->password;
   }
 
   public function __get(string $name) {
