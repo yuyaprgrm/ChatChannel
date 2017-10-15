@@ -5,11 +5,14 @@ namespace famima65536\chatchannel;
 # Base #
 use pocketmine\plugin\PluginBase;
 
-# utils #
+# Channel #
+use famima65536\chatchannel\channel\PrimaryChannel;
+
+# Utils #
 use famima65536\chatchannel\utils\Translation;
 use famima65536\chatchannel\utils\ChannelManager;
-
 use pocketmine\utils\TextFormat as TF;
+
 /**
  * [Plugin]
  * APIの実装
@@ -34,6 +37,9 @@ class Main extends PluginBase {
     }
     Translation::loadLangFile();
 
+    ChannelManager::register(new PrimaryChannel("PRIMARY_CHANNEL"));
+
+    EventListener::register($this);
     // TODO use Translation.
     $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.enable"));
   }
