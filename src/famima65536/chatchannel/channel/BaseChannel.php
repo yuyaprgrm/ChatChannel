@@ -3,13 +3,14 @@
 namespace famima65536\chatchannel\channel;
 
 use famima65536\chatchannel\channel\Channel;
+use pocketmine\event\player\PlayerChatEvent;
 
 abstract class BaseChannel implements ChatChannel {
 
   private $name, $password;
   public $id;
 
-  private $members = []; /** @var Player[] key => value*/
+  protected $members = []; /** @var Player[] key => value*/
 
   public function __construct(string $name, string $password = "") {
     $this->name = $name;
