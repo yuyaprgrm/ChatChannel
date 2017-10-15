@@ -8,7 +8,7 @@ namespace famima65536\chatchannel\channel;
  */
 interface Channel {
 
-  public function __construct(string $name, string $password = null);
+  public function __construct(string $name, string $password = "");
 
   /* send message to player in the channel. */
   public function onChat(PlayerChatEvent $event);
