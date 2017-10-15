@@ -18,7 +18,7 @@ abstract class BaseChannel implements ChatChannel {
   }
 
   public function onChat(PlayerChatEvent $event) : void {
-
+    $event->setMessage("${this->name} >> ${this->getMessage()}");
   }
 
   public function login(Player $player) {
