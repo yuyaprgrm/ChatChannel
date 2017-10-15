@@ -13,11 +13,15 @@ class ChannelManager {
   public static function register(Channel $channel) {
     $id = count(self::$channels);
     $channel->id = $id;
-    self::$channels[$count] = $channel;
+    self::$channels[$id] = $channel;
+    var_dump(self::$channels);
   }
 
   public static function getChannel($id) {
+  }
 
+  public static function getPrimaryChannel() {
+    return self::getChannel(0);
   }
 
   public static function getPlayerChannel(Player $player) : Channel {
