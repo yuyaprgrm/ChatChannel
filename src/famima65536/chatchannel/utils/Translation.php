@@ -58,4 +58,9 @@ class Translation {
 		}
 		return $result;
 	}
+
+  private function __construct() {
+  }
+
+  
 }
