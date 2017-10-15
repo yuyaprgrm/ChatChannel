@@ -2,9 +2,12 @@
 
 namespace famima65536\chatchannel;
 
+# Base #
 use pocketmine\plugin\PluginBase;
-use pocketmine\utils\TextFormat as TF;
 
+# utils #
+use famima65536\chatchannel\utils\Translation;
+use pocketmine\utils\TextFormat as TF;
 /**
  * [Plugin]
  * APIの実装
@@ -18,8 +21,23 @@ class Main extends PluginBase {
    * 初期化処理
    */
   public function onEnable() {
+    $lang = "ja";
+
+    // RegisterTranslation
+    $this->saveResource("message_en.yaml");
+    Translation::register($this->getDataFolder(), $lang);
+
+    if(!Translation::existsLangFile()) {
+      $this->saveResource("message_${lang}.yaml");
+    }
+    Translation::loadLangFile();
+
     // TODO use Translation.
-    $this->getLogger()->info(TF::AQUA."ChatChannel by famima65536");
+    $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.enable"));
+  }
+
+  public function onDisable() {
+    $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.disable"));
   }
 
 }
