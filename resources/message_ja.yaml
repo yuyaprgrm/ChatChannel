@@ -9,6 +9,8 @@ window:
     subtitle: "項目を選択してください"
   makeChannel:
     title: "チャンネル作成"
+    name: "チャンネル名を入力"
+    memberLimit: "制限人数を入力(0で無制限)"
   selectChannel:
     title: "チャンネル選択"
     channels: "チャンネル"
