@@ -2,3 +2,8 @@
 plugin:
   enable: "§aChatChannel §7by §efamima65536!"
   disable: "§bThank you for using §aChatChannel"
+
+window:
+  selectChannel:
+    title: "SELECT CHANNEL"
+    channels: "CHANNELS"
