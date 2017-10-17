@@ -8,7 +8,7 @@ use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 # Utils #
 use famima65536\chatchannel\utils\Translation;
 use famima65536\chatchannel\utils\ChannelManager;
-use famima65536\chatchannel\utils\Windo;
+use famima65536\chatchannel\utils\WindowManager;
 
 class MenuWindow extends Window {
 
@@ -39,14 +39,18 @@ class MenuWindow extends Window {
     $args = explode(".", $pk->formData);
     var_dump($args);
     switch (trim($args[0])) {
+      case "0":
+        $window = new MakeChannelWindow($this->player);
+        break;
       case "1":
         $window = new SelectChannelWindow($this->player);
-        WindowManager::set($window);
         break;
 
       default:
-        # code...
+        $window = $this; // 再表示
         break;
     }
+
+    WindowManager::set($window);
   }
 }
