@@ -23,6 +23,7 @@ abstract class Window {
   public function navigate() {
     $this->process();
     $pk = new ModalFormRequestPacket();
+    $pk->formId = static::$formId;
     $pk->formData = $this->getFormJson();
     $this->player->dataPacket($pk);
   }

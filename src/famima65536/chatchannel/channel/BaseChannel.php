@@ -9,7 +9,7 @@ use pocketmine\Player;
 
 abstract class BaseChannel implements Channel {
 
-  private $name, $password;
+  public $name, $password;
   public $id;
 
   protected $members = []; /** @var Player[] key => value*/

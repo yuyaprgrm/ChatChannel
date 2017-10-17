@@ -42,4 +42,16 @@ class ChannelManager {
       self::$players[strtolower($player->getName())] = $channel->id;
     }
   }
+
+  public static function getAllChannels(bool $keyId=true) : array {
+    if($keyId) {
+      return self::$channels;
+    } else {
+      $channels = [];
+      foreach(self::getAllChannels() as $channel) {
+        $channels[] = $channel;
+      }
+      return $channels;
+    }
+  }
 }

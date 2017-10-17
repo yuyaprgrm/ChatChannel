@@ -7,6 +7,7 @@ use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 
 # Utils #
 use famima65536\chatchannel\utils\Translation;
+use famima65536\chatchannel\utils\ChannelManager;
 
 class SelectChannelWindow extends Window {
 
@@ -20,19 +21,22 @@ class SelectChannelWindow extends Window {
         [
 					"type" => "dropdown",
 					"text" => Translation::getMessage("window.selectChannel.channels"),
-					"options" => [
-            "A",
-            "B"
-          ]
+					"options" => []
 				]
       ]
 
     ];
+
+    foreach (ChannelManager::getAllChannels() as $id => $channel) {
+      $this->data["content"][0]["options"][$id] = $channel->name;
+    }
+
   }
 
   public function handle(ModalFormResponsePacket $pk) {
-
+    // var_dump($pk);
+    if(strpos($pk->formData, "null") !== false) { //バツが押されたら
+      $this->navigate();
+    }
   }
-
-
 }
