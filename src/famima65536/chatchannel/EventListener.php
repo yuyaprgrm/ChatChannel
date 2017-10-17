@@ -11,7 +11,7 @@ use pocketmine\event\player\PlayerInteractEvent;
 use famima65536\chatchannel\utils\ChannelManager;
 
 # Window #
-use famima65536\chatchannel\ui\windows\SelectChannelWindow;
+use famima65536\chatchannel\ui\SelectChannelWindow;
 
 class EventListener implements Listener {
 
@@ -31,7 +31,7 @@ class EventListener implements Listener {
   public function onTouch(PlayerInteractEvent $event) {
     $event->getPlayer()->sendMessage((string)SelectChannelWindow::$formId);
     $window = new SelectChannelWindow($event->getPlayer());
-    // TODO register windows
+
   }
 
   public function onPacketReceive(ServerPacketReceiveEvent $event) {
