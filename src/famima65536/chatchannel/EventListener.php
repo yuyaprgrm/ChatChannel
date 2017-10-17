@@ -14,6 +14,7 @@ use famima65536\chatchannel\utils\WindowManager;
 
 # Window #
 use famima65536\chatchannel\ui\SelectChannelWindow;
+use famima65536\chatchannel\ui\MenuWindow;
 
 # protocol #
 use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
@@ -34,7 +35,7 @@ class EventListener implements Listener {
   }
 
   public function onTouch(PlayerInteractEvent $event) {
-    $window = new SelectChannelWindow($event->getPlayer());
+    $window = new MenuWindow($event->getPlayer());
     WindowManager::set($window); // Set Player Window.
   }
 

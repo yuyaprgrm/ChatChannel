@@ -32,7 +32,7 @@ class Translation {
 
   public static function getMessage(string $msg, array $replace = []) : string {
 
-    $message = self::$messages[$msg] ?? self::$baseMessages[$msg] ?? null; //最後まで見つからなかったらnull
+    $message = self::$messages[$msg] ?? self::$baseMessages[$msg] ?? $msg; //最後まで見つからなかったら$msg
 
     return self::translate($message, $replace);
   }
@@ -62,5 +62,5 @@ class Translation {
   private function __construct() {
   }
 
-  
+
 }
