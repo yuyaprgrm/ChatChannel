@@ -5,9 +5,13 @@ namespace famima65536\chatchannel;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerInteractEvent;
 
 # Utils #
 use famima65536\chatchannel\utils\ChannelManager;
+
+# Window #
+use famima65536\chatchannel\ui\SelectChannelWindow;
 
 class EventListener implements Listener {
 
@@ -22,6 +26,12 @@ class EventListener implements Listener {
   public function onChat(PlayerChatEvent $event) {
     $channel = ChannelManager::getPlayerChannel($event->getPlayer()) ?? ChannelManager::getPrimaryChannel();
     $channel->onChat($event);
+  }
+
+  public function onTouch(PlayerInteractEvent $event) {
+    $event->getPlayer()->sendMessage((string)SelectChannelWindow::$formId);
+    $window = new SelectChannelWindow($event->getPlayer());
+    $window->navigate();
   }
 
   private function __construct() {
