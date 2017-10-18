@@ -26,7 +26,7 @@ class Main extends PluginBase {
    * 初期化処理
    */
   public function onEnable() {
-    $lang = "ja";
+    $lang = "en";
 
     // RegisterTranslation
     $this->saveResource("message_en.yaml");
