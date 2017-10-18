@@ -36,7 +36,7 @@ abstract class BaseChannel implements Channel {
 
   public function join(Player $player) {
     $this->members[strtolower($player->getName())] = $player;
-    $player->setDisplayName($player->getName()."§7:".$this->name);
+    $player->setDisplayName($player->getName()."§7:".$this->name."§f");
   }
 
   public function quit(Player $player) {
