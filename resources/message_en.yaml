@@ -4,6 +4,18 @@ plugin:
   disable: "§bThank you for using §aChatChannel"
 
 window:
+  menu:
+    title: "Channel Menu"
+    subtitle: "Please choose the content."
+  makeChannel:
+    title: "Make channel"
+    name: "Channel name"
+    password: "Password (Allow no password.)"
+    memberLimit: "Max member (Zero is unlimited.)"
   selectChannel:
-    title: "SELECT CHANNEL"
-    channels: "CHANNELS"
+    title: "ChooseChannel"
+    channels: "Channels"
+    password: "Password"
+
+channel:
+  join: "{%name} joined this channel."
