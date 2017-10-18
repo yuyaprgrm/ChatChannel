@@ -36,13 +36,13 @@ class MenuWindow extends Window {
       return;
     }
 
-    $args = explode(".", $pk->formData);
-    var_dump($args);
-    switch (trim($args[0])) {
-      case "0":
+    $menuId = (int) $pk->formData;
+
+    switch ($menuId) {
+      case 0:
         $window = new MakeChannelWindow($this->player);
         break;
-      case "1":
+      case 1:
         $window = new SelectChannelWindow($this->player);
         break;
 

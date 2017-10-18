@@ -4,6 +4,7 @@ namespace famima65536\chatchannel\ui;
 
 use pocketmine\Player;
 use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
+use famima65536\chatchannel\channel\PublicChannel;
 
 # Utils #
 use famima65536\chatchannel\utils\Translation;
@@ -24,6 +25,10 @@ class MakeChannelWindow extends Window {
           "text" => Translation::getMessage("window.makeChannel.name")
         ],
         [
+          "type" => "input",
+          "text" => Translation::getMessage("window.makeChannel.password")
+        ],
+        [
           "type" => "slider",
           "text" => Translation::getMessage("window.makeChannel.memberLimit"),
           "min" => 0,
@@ -39,6 +44,10 @@ class MakeChannelWindow extends Window {
     if(strpos($pk->formData, "null") !== false) { //バツが押されたら
       return;
     }
-
+    $data = json_decode($pk->formData, true);
+    $channel = new PublicChannel($data[0], $data[1]);
+    ChannelManager::register($channel);
+    ChannelManager::quitChannel($this->player);
+    ChannelManager::loginChannel($this->player, $channel);
   }
 }

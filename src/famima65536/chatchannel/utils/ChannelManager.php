@@ -14,7 +14,6 @@ class ChannelManager {
     $id = count(self::$channels);
     $channel->id = $id;
     self::$channels[$id] = $channel;
-    var_dump(self::$channels);
   }
 
   public static function getChannel($id) : Channel {
@@ -40,7 +39,19 @@ class ChannelManager {
     if($channel->password === $password or $channel->password === "") { // no password or true password.
       $channel->join($player);
       self::$players[strtolower($player->getName())] = $channel->id;
+      return true;
     }
+    return false;
+  }
+
+  public static function quitChannel(Player $player) {
+    $channel = self::getPlayerChannel($player);
+
+    if($channel === self::getPrimaryChannel()) {
+      return;
+    }
+    $channel->quit($player);
+    self::loginChannel($player, self::getPrimaryChannel());
   }
 
   public static function getAllChannels(bool $keyId=true) : array {

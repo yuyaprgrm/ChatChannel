@@ -6,6 +6,7 @@ use famima65536\chatchannel\channel\Channel;
 use pocketmine\event\player\PlayerChatEvent;
 
 use pocketmine\Player;
+use famima65536\chatchannel\utils\Translation;
 
 abstract class BaseChannel implements Channel {
 
@@ -21,6 +22,13 @@ abstract class BaseChannel implements Channel {
   }
 
   public function onChat(PlayerChatEvent $event) : void {
+  }
+
+  public function sendMessage($msg) {
+    $msg = $this->name . " >> " . $msg;
+    foreach($this->members as $player) {
+      $player->sendMessage($msg);
+    }
   }
 
   public function login(Player $player) {

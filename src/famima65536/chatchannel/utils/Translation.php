@@ -39,7 +39,7 @@ class Translation {
 
   private static function translate(string $message, array $replace) : string {
     foreach($replace as $key => $value) {
-      $message = preg_replace($key, $value, $message);
+      $message = preg_replace("/${key}/", $value, $message);
     }
     return $message;
   }
