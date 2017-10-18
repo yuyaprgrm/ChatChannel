@@ -40,7 +40,7 @@ abstract class BaseChannel implements Channel {
   }
 
   public function quit(Player $player) {
-    $this->members[strtolower($player->getName())] = null;
+    unset($this->members[strtolower($player->getName())]);
   }
 
   public function __toString() : string {

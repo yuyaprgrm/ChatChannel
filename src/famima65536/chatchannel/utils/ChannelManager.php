@@ -16,6 +16,10 @@ class ChannelManager {
     self::$channels[$id] = $channel;
   }
 
+  public static function unregister(Channel $channel) {
+    unset(self::$channels[$channel->id]);
+  }
+
   public static function getChannel($id) : Channel {
     return self::$channels[$id] ?? null;
   }
@@ -51,6 +55,12 @@ class ChannelManager {
       return;
     }
     $channel->quit($player);
+    var_dump($channel->members);
+
+    if(count($channel->members) <= 0) {
+      self::unregister($channel);
+    }
+
     self::loginChannel($player, self::getPrimaryChannel());
   }
 

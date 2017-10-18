@@ -36,23 +36,28 @@ class SelectChannelWindow extends Window {
     $this->channels = [];
     foreach (ChannelManager::getAllChannels() as $id => $channel) {
       $this->channels[] = $id;
-      $this->data["content"][0]["options"][$id] = $channel->name;
+      $this->data["content"][0]["options"][] = $channel->name;
     }
 
   }
 
   public function handle(ModalFormResponsePacket $pk) {
     // var_dump($pk);
-    if(strpos($pk->formData, "null") !== false) { //バツが押されたら
+    if(strpos($pk->formData, "null") !== false) { //バツが押されたら再表示
       WindowManager::set($this);
       return;
     }
 
     $data = json_decode($pk->formData, true);
-    ChannelManager::quitChannel($this->player);
     $channel = ChannelManager::getChannel($this->channels[$data[0]]);
 
-    if(! ChannelManager::loginChannel($this->player, $channel)) { //失敗
+    if(ChannelManager::getPlayerChannel($this->player) === $channel) { //同じならそのまま
+      return;
+    }
+
+    ChannelManager::quitChannel($this->player);
+
+    if(! ChannelManager::loginChannel($this->player, $channel)) { // パスワード失敗なら再表示
       WindowManager::set($this);
     }
 
