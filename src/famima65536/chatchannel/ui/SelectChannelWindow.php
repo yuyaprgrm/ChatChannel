@@ -44,7 +44,7 @@ class SelectChannelWindow extends Window {
   public function handle(ModalFormResponsePacket $pk) {
     // var_dump($pk);
     if(strpos($pk->formData, "null") !== false) { //バツが押されたら
-      $this->navigate();
+      WindowManager::set($this);
       return;
     }
 
