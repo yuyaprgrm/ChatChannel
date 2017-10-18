@@ -44,7 +44,13 @@ class MakeChannelWindow extends Window {
     if(strpos($pk->formData, "null") !== false) { //バツが押されたら
       return;
     }
+
     $data = json_decode($pk->formData, true);
+    if($data[0] === "") { //チャンネル名が入力されていなければ
+      WindowManager::set($this);
+      return;
+    }
+
     $channel = new PublicChannel($data[0], $data[1]);
     ChannelManager::register($channel);
     ChannelManager::quitChannel($this->player);
