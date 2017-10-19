@@ -26,8 +26,9 @@ class Main extends PluginBase {
    * 初期化処理
    */
   public function onEnable() {
-    $lang = "en";
-
+    $this->saveDefaultConfig();
+    $config = $this->getConfig();
+    $lang = $config->get("lang") ?? "en";
     // RegisterTranslation
     $this->saveResource("message_en.yaml");
     Translation::register($this->getDataFolder(), $lang);
@@ -39,7 +40,9 @@ class Main extends PluginBase {
 
     ChannelManager::register(new PrimaryChannel("PRIMARY_CHANNEL"));
 
+    $itemData = $config->get("menu-item") ?? ["id" => 353, "damage" => 0];
     EventListener::register($this);
+    EventListener::setItemData($itemData["id"], $itemData["damage"]);
     // TODO use Translation.
     $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.enable"));
   }

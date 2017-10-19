@@ -1,0 +1,7 @@
+# Language #
+lang: "ja"
+
+# MenuItem (default: sugar)#
+menu-item:
+  id: 353
+  damage: 0

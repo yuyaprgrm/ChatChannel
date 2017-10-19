@@ -21,6 +21,8 @@ use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 
 class EventListener implements Listener {
 
+  private static $itemData;
+
   public static function register(Main $main) {
     $main->getServer()->getPluginManager()->registerEvents(new EventListener(), $main);
   }
@@ -35,18 +37,30 @@ class EventListener implements Listener {
   }
 
   public function onTouch(PlayerInteractEvent $event) {
-    $window = new MenuWindow($event->getPlayer());
-    WindowManager::set($window); // Set Player Window.
+    $player = $event->getPlayer();
+    $item = $player->getInventory()->getItemInHand();
+
+    if($item->getId() === self::$itemData[0] and $item->getDamage() === self::$itemData[1]) {
+      $window = new MenuWindow($event->getPlayer());
+      WindowManager::set($window); // Set Player Window.
+    }
+
   }
 
   public function onPacketReceive(DataPacketReceiveEvent $event) {
     $pk = $event->getPacket();
+
     if($pk::NETWORK_ID === ModalFormResponsePacket::NETWORK_ID) {
       $player = $event->getPlayer();
       $window = WindowManager::get($player);
       $window->player = $player;
       $window->handle($pk);
     }
+
+  }
+
+  public static function setItemData(int $id, int $damage) {
+    self::$itemData = [$id, $damage];
   }
 
   private function __construct() {
