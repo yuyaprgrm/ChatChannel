@@ -4,4 +4,5 @@ branches:
 projects:
   ChatChannel:
     path: ""
+    icon: chatchannel.png
 ...
