@@ -10,7 +10,13 @@ class ChannelManager {
   public static $channels = [];
   public static $players = []; /* name => id */
 
-  public static function register(Channel $channel) {
+  public static function register(Channel $channel, ?Player $player=null) {
+    
+    if($player !== null) {
+      self::quitChannel($player);
+      self::loginChannel($player, $channel);
+    }
+
     $id = count(self::$channels);
     $channel->id = $id;
     self::$channels[$id] = $channel;
@@ -20,7 +26,7 @@ class ChannelManager {
     unset(self::$channels[$channel->id]);
   }
 
-  public static function getChannel($id) : Channel {
+  public static function getChannel($id) : ?Channel {
     return self::$channels[$id] ?? null;
   }
 
@@ -28,7 +34,7 @@ class ChannelManager {
     return self::getChannel(0);
   }
 
-  public static function getPlayerChannel(Player $player) : Channel {
+  public static function getPlayerChannel(Player $player) : ?Channel {
     $name = strtolower($player->getName());
     $channelId = self::$players[$name] ?? null;
 
@@ -36,9 +42,12 @@ class ChannelManager {
       return null;
     }
 
-    return self::$channels[$channelId];
+    return self::$channels[$channelId] ?? null;
   }
 
+  /**
+   * プレイヤーをチャンネルに入室させます
+   */
   public static function loginChannel(Player $player, Channel $channel, string $password = "") {
     if($channel->password === $password or $channel->password === "") { // no password or true password.
       $channel->join($player);
@@ -48,20 +57,19 @@ class ChannelManager {
     return false;
   }
 
+  /**
+   * プレイヤーをチャンネルから退出させます
+   */
   public static function quitChannel(Player $player) {
     $channel = self::getPlayerChannel($player);
 
-    if($channel === self::getPrimaryChannel()) {
-      return;
-    }
     $channel->quit($player);
-    var_dump($channel->members);
+    self::$players[strtolower($player->getName())] = $channel->id;
 
-    if(count($channel->members) <= 0) {
+    if(count($channel->members) <= 0 and $channel !== self::getPrimaryChannel()) {
       self::unregister($channel);
     }
 
-    self::loginChannel($player, self::getPrimaryChannel());
   }
 
   public static function getAllChannels(bool $keyId=true) : array {

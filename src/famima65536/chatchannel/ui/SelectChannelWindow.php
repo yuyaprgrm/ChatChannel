@@ -48,10 +48,11 @@ class SelectChannelWindow extends Window {
       return;
     }
 
+
     $data = json_decode($pk->formData, true);
     $channel = ChannelManager::getChannel($this->channels[$data[0]]);
 
-    if(ChannelManager::getPlayerChannel($this->player) === $channel) { //同じならそのまま
+    if($channel === null or ChannelManager::getPlayerChannel($this->player) === $channel) { //チャンネルが存在しない、または同じならそのまま
       return;
     }
 
