@@ -11,14 +11,18 @@ class ChannelManager {
   public static $players = []; /* name => id */
 
   public static function register(Channel $channel, ?Player $player=null) {
-    
+
     if($player !== null) {
       self::quitChannel($player);
-      self::loginChannel($player, $channel);
     }
 
     $id = count(self::$channels);
     $channel->id = $id;
+
+    if($player !== null) {
+      self::loginChannel($player, $channel);
+    }
+
     self::$channels[$id] = $channel;
   }
 
