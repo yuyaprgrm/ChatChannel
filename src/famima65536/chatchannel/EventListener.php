@@ -32,7 +32,7 @@ class EventListener implements Listener {
   }
 
   public function onChat(PlayerChatEvent $event) {
-    $channel = ChannelManager::getPlayerChannel($event->getPlayer()) ?? ChannelManager::getPrimaryChannel();
+    $channel = ChannelManager::getPlayerChannel($event->getPlayer());
     $channel->onChat($event);
   }
 
