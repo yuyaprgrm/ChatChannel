@@ -13,7 +13,7 @@ abstract class BaseChannel implements Channel {
   public $name, $password;
   public $id;
 
-  protected $limit; /** @var int member limit*/
+  public $limit; /** @var int member limit*/
 
   protected $members = []; /** @var Player[] key => value*/
 
