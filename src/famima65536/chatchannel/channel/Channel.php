@@ -11,7 +11,7 @@ use pocketmine\Player;
  */
 interface Channel {
 
-  public function __construct(string $name, string $password = "");
+  public function __construct(string $name, string $password = "", int $limit);
 
   /* send message to player in the channel. */
   public function onChat(PlayerChatEvent $event);

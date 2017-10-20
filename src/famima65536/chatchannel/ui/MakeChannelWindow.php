@@ -52,7 +52,7 @@ class MakeChannelWindow extends Window {
       return;
     }
 
-    $channel = new PublicChannel($data[0], $data[1]);
+    $channel = new PublicChannel($data[0], $data[1], $data[2]);
     ChannelManager::register($channel, $this->player);
   }
 }

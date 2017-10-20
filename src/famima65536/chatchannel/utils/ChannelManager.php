@@ -20,7 +20,7 @@ class ChannelManager {
     $channel->id = $id;
 
     if($player !== null) {
-      self::loginChannel($player, $channel);
+      self::loginChannel($player, $channel, $channel->password);
     }
 
     self::$channels[$id] = $channel;

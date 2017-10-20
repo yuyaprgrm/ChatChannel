@@ -52,14 +52,15 @@ class SelectChannelWindow extends Window {
     $data = json_decode($pk->formData, true);
     $channel = ChannelManager::getChannel($this->channels[$data[0]]);
 
-    if($channel === null or ChannelManager::getPlayerChannel($this->player) === $channel) { //チャンネルが存在しない、または同じならそのまま
+    if($channel === null or !$channel->canJoin() or ChannelManager::getPlayerChannel($this->player) === $channel) { //チャンネルが存在しない、または同じならそのまま
       return;
     }
 
     ChannelManager::quitChannel($this->player);
 
-    if(! ChannelManager::loginChannel($this->player, $channel)) { // パスワード失敗なら再表示
+    if(! ChannelManager::loginChannel($this->player, $channel, $data[1])) { // パスワード失敗なら再表示
       WindowManager::set($this);
+      ChannelManager::loginChannel(ChannelManager::getPrimaryChannel());
     }
 
   }

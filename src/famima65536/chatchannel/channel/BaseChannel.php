@@ -13,12 +13,15 @@ abstract class BaseChannel implements Channel {
   public $name, $password;
   public $id;
 
+  protected $limit; /** @var int member limit*/
+
   protected $members = []; /** @var Player[] key => value*/
 
-  public function __construct(string $name, string $password = "") {
+  public function __construct(string $name, string $password = "", int $limit = 0) {
     $this->name = $name;
     $this->password = $password;
     $this->members = [];
+    $this->limit = $limit;
   }
 
   public function onChat(PlayerChatEvent $event) : void {
@@ -32,6 +35,10 @@ abstract class BaseChannel implements Channel {
   }
 
   public function login(Player $player) {
+  }
+
+  public function canJoin() : bool {
+    return ($this->limit === 0) or ($this->limit > count($this->members));
   }
 
   public function join(Player $player) {
