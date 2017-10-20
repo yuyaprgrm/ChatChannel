@@ -2,4 +2,4 @@ name: ChatChannel
 main: famima65536\chatchannel\Main
 author: famima65536
 api: [1.0.0, 2.0.0, 3.0.0, 3.0.0-ALPHA7, 3.0.0-ALPHA8, 3.0.0-ALPHA9]
-version: 1.0.1
+version: 2.0.0
