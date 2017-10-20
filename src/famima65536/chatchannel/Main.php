@@ -30,11 +30,11 @@ class Main extends PluginBase {
     $config = $this->getConfig();
     $lang = $config->get("lang") ?? "en";
     // RegisterTranslation
-    $this->saveResource("message_en.yaml");
+    $this->saveResource("message_en.yml");
     Translation::register($this->getDataFolder(), $lang);
 
     if(!Translation::existsLangFile()) {
-      $this->saveResource("message_${lang}.yaml");
+      $this->saveResource("message_${lang}.yml");
     }
     Translation::loadLangFile();
 

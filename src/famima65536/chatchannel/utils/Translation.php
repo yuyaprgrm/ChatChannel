@@ -22,12 +22,12 @@ class Translation {
   }
 
   public static function existsLangFile(string $lang = null) : bool {
-    return file_exists(self::$directory."message_".($lang ?? self::$lang ?? "").".yaml");
+    return file_exists(self::$directory."message_".($lang ?? self::$lang ?? "").".yml");
   }
 
   public static function loadLangFile() : void {
-    self::$messages = self::parseMessages((new Config(self::$directory."message_".self::$lang.".yaml", Config::YAML))->getAll());
-    self::$baseMessages = self::parseMessages((new Config(self::$directory."message_en.yaml", Config::YAML))->getAll());
+    self::$messages = self::parseMessages((new Config(self::$directory."message_".self::$lang.".yml", Config::YAML))->getAll());
+    self::$baseMessages = self::parseMessages((new Config(self::$directory."message_en.yml", Config::YAML))->getAll());
   }
 
   public static function getMessage(string $msg, array $replace = []) : string {
