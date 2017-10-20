@@ -23,7 +23,12 @@ class ManageChannelWindow extends Window {
       "title" => Translation::getMessage("window.manageChannel.title"),
       "content" => Translation::getMessage("window.manageChannel.subtitle"),
       "buttons" => [
-
+        [
+					"text" => Translation::getMessage("window.channelMemberManage.title")
+				],
+        [
+					"text" => Translation::getMessage("window.channelSetting.title")
+				],
       ]
     ];
   }
