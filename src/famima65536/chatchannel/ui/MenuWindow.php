@@ -26,6 +26,9 @@ class MenuWindow extends Window {
         [
 					"text" => Translation::getMessage("window.selectChannel.title")
 				],
+        [
+          "text" => Translation::getMessage("window.manageChannel.title")
+        ]
       ]
     ];
   }
@@ -45,7 +48,10 @@ class MenuWindow extends Window {
       case 1:
         $window = new SelectChannelWindow($this->player);
         break;
-
+      case 2:
+        $window = new ManageChannelWindow($this->player);
+        break;
+        
       default:
         $window = $this; // 再表示
         break;
