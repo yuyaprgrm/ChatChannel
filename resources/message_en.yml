@@ -13,7 +13,7 @@ window:
     password: "Password (Allow no password.)"
     memberLimit: "Max member (Zero is unlimited.)"
   selectChannel:
-    title: "ChooseChannel"
+    title: "Choose channel"
     channels: "Channels"
     password: "Password"
 
