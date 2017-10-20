@@ -7,7 +7,7 @@ use pocketmine\Player;
 
 use famima65536\chatchannel\utils\Translation;
 
-class PublicChannel extends BaseChannel {
+class PublicChannel extends BaseChannel implements OwnedChannel {
 
   public function onChat(PlayerChatEvent $event) : void {
     Parent::onChat($event);
@@ -18,4 +18,5 @@ class PublicChannel extends BaseChannel {
     Parent::join($player);
     $this->sendMessage(Translation::getMessage("channel.join", ["{%name}" => $player->getName()]));
   }
+
 }

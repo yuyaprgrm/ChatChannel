@@ -10,6 +10,8 @@ use famima65536\chatchannel\utils\Translation;
 
 abstract class BaseChannel implements Channel {
 
+  public $owner; /** @var Player */
+  
   public $name, $password;
   public $id;
 
