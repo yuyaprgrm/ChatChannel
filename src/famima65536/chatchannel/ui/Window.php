@@ -8,7 +8,7 @@ use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
 
 abstract class Window {
 
-  public static $formId = 0;
+  public static $formId = -1;
   public $player;
   public $data;
 

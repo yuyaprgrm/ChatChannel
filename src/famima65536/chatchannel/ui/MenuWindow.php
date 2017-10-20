@@ -12,7 +12,7 @@ use famima65536\chatchannel\utils\WindowManager;
 
 class MenuWindow extends Window {
 
-  public static $formId = 1;
+  public static $formId = 0;
 
   public function process() {
     $this->data = [
