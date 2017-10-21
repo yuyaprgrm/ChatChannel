@@ -13,7 +13,7 @@ use famima65536\chatchannel\utils\WindowManager;
 
 class ManageChannelWindow extends Window {
 
-  public static $formId = 2;
+  public static $formId = 3;
   public $player;
   public $data;
 
