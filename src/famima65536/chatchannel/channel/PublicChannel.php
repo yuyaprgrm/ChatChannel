@@ -19,4 +19,9 @@ class PublicChannel extends BaseChannel implements OwnedChannel {
     $this->sendMessage(Translation::getMessage("channel.join", ["{%name}" => $player->getName()]));
   }
 
+  public function quit(Player $player) {
+      Parent::quit($player);
+      $this->sendMessage(Translation::getMessage("channel.quit", ["{%name}" => $player->getName()]));
+  }
+
 }
