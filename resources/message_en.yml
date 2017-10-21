@@ -31,9 +31,6 @@ window:
 
   channelSettings:
     title: "Channel Settings"
-    limit: "Member limit"
-    name: "Channel name"
-
 
 channel:
   join: "{%name} joined this channel."

@@ -32,7 +32,21 @@ class ManageChannelWindow extends Window {
   }
 
   public function handle(ModalFormResponsePacket $pk) {
+    if(strpos($pk->formData, "null") !== false) { //バツが押されたら
+      return;
+    }
 
+    $menuId = (int) $pk->formData;
+    switch ($menuId) {
+      case 1:
+        $window = new ChannelSettingsWindow($this->player);
+        break;
+
+      default:
+        $window = $this;
+    }
+
+    WindowManager::set($window);
   }
 
 
