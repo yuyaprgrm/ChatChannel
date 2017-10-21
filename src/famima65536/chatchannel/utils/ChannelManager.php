@@ -21,6 +21,7 @@ class ChannelManager {
 
     if($player !== null) {
       self::loginChannel($player, $channel, $channel->password);
+      $channel->owner = $player;
     }
 
     self::$channels[$id] = $channel;
@@ -68,7 +69,7 @@ class ChannelManager {
     $channel = self::getPlayerChannel($player);
 
     $channel->quit($player);
-    self::$players[strtolower($player->getName())] = $channel->id;
+    self::$players[strtolower($player->getName())] = null;
 
     if(count($channel->members) <= 0 and $channel !== self::getPrimaryChannel()) {
       self::unregister($channel);
