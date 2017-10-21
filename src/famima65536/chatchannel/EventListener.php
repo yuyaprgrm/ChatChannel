@@ -23,20 +23,20 @@ class EventListener implements Listener {
 
   private static $itemData;
 
-  public static function register(Main $main) {
+  public static function register(Main $main) : void {
     $main->getServer()->getPluginManager()->registerEvents(new EventListener(), $main);
   }
 
-  public function onJoin(PlayerJoinEvent $event) {
+  public function onJoin(PlayerJoinEvent $event) : void {
     ChannelManager::loginChannel($event->getPlayer(), ChannelManager::getPrimaryChannel());
   }
 
-  public function onChat(PlayerChatEvent $event) {
+  public function onChat(PlayerChatEvent $event) : void {
     $channel = ChannelManager::getPlayerChannel($event->getPlayer());
     $channel->onChat($event);
   }
 
-  public function onTouch(PlayerInteractEvent $event) {
+  public function onTouch(PlayerInteractEvent $event) : void {
     $player = $event->getPlayer();
     $item = $player->getInventory()->getItemInHand();
 
@@ -47,7 +47,7 @@ class EventListener implements Listener {
 
   }
 
-  public function onPacketReceive(DataPacketReceiveEvent $event) {
+  public function onPacketReceive(DataPacketReceiveEvent $event) : void {
     $pk = $event->getPacket();
 
     if($pk::NETWORK_ID === ModalFormResponsePacket::NETWORK_ID) {
@@ -59,7 +59,7 @@ class EventListener implements Listener {
 
   }
 
-  public static function setItemData(int $id, int $damage) {
+  public static function setItemData(int $id, int $damage) : void {
     self::$itemData = [$id, $damage];
   }
 
