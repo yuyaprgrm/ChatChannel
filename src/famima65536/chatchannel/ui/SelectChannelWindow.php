@@ -59,8 +59,10 @@ class SelectChannelWindow extends Window {
     ChannelManager::quitChannel($this->player);
 
     if(! ChannelManager::loginChannel($this->player, $channel, $data[1])) { // パスワード失敗なら再表示
-      WindowManager::set($this);
-      ChannelManager::loginChannel(ChannelManager::getPrimaryChannel());
+      $this->data["content"][1]["text"] .= "\n§c".Translation::getMessage("window.selectChannel.passwordError");
+      $this->data["content"][0]["default"] = $data[0];
+      WindowManager::set($this, false);
+      ChannelManager::loginChannel($this->player, ChannelManager::getPrimaryChannel());
     }
 
   }
