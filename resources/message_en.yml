@@ -7,16 +7,33 @@ window:
   menu:
     title: "Channel Menu"
     subtitle: "Please choose the content."
+
   makeChannel:
     title: "Make channel"
     name: "Channel name"
     password: "Password (Allow no password.)"
     memberLimit: "Max member (Zero is unlimited.)"
+
   selectChannel:
     title: "Choose channel"
     channels: "Channels"
     password: "Password"
     passwordError: "your password is incorrect"
+
+  manageChannel:
+    title: "Manage channel"
+    subtitle: "Please choose menu"
+
+  channelMemberManage:
+    title: "Manage the members"
+    kick: "Kick the player."
+    owner: "Change the owner to the player."
+
+  channelSettings:
+    title: "Channel Settings"
+    limit: "Member limit"
+    name: "Channel name"
+
 
 channel:
   join: "{%name} joined this channel."
