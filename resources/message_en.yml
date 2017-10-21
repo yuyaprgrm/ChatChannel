@@ -16,6 +16,8 @@ window:
     title: "Choose channel"
     channels: "Channels"
     password: "Password"
+    passwordError: "your password is incorrect"
 
 channel:
   join: "{%name} joined this channel."
+  quit: "{%name} quit this channel."

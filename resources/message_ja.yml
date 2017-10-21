@@ -16,6 +16,8 @@ window:
     title: "チャンネル選択"
     channels: "チャンネル"
     password: "パスワードを入力"
+    passwordError: "パスワードが間違っています"
 
 channel:
   join: "{%name}さんが参加しました"
+  quit: "{%name}さんが抜けました"
