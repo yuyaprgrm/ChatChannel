@@ -25,12 +25,13 @@ class MenuWindow extends Window {
 				],
         [
 					"text" => Translation::getMessage("window.selectChannel.title")
-				],
-        [
-          "text" => Translation::getMessage("window.manageChannel.title")
-        ]
+				]
       ]
     ];
+
+    if(ChannelManager::isOwner($this->player)) { //オーナーだったら
+      $this->data["buttons"][] = ["text" => Translation::getMessage("window.manageChannel.title")];
+    }
   }
 
   public function handle(ModalFormResponsePacket $pk) {
@@ -51,7 +52,7 @@ class MenuWindow extends Window {
       case 2:
         $window = new ManageChannelWindow($this->player);
         break;
-        
+
       default:
         $window = $this; // 再表示
         break;

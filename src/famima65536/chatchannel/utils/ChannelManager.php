@@ -4,6 +4,7 @@ namespace famima65536\chatchannel\utils;
 
 use pocketmine\Player;
 use famima65536\chatchannel\channel\Channel;
+use famima65536\chatchannel\channel\OwnedChannel;
 
 class ChannelManager {
 
@@ -87,5 +88,10 @@ class ChannelManager {
       }
       return $channels;
     }
+  }
+
+  public static function isOwner(Player $player) : bool {
+    $channel = self::getPlayerChannel($player);
+    return $channel instanceof OwnedChannel and $channel->owner === $player;
   }
 }
