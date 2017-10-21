@@ -20,8 +20,8 @@ abstract class Window {
 
   abstract public function handle(ModalFormResponsePacket $pk);
 
-  public function navigate() {
-    $this->process();
+  public function navigate(bool $process) {
+    if($process)$this->process();
     $pk = new ModalFormRequestPacket();
     $pk->formId = static::$formId;
     $pk->formData = $this->getFormJson();

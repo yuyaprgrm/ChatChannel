@@ -10,9 +10,10 @@ class WindowManager {
 
   public static $windows = [];
 
-  public static function set(Window $window) {
+  public static function set(Window $window, bool $process=true) {
     self::$windows[$window->player->getName()] = $window;
-    $window->navigate();
+    $window->navigate($process);
+
   }
 
   public static function get(Player $player) {
