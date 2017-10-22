@@ -38,6 +38,10 @@ class ManageChannelWindow extends Window {
 
     $menuId = (int) $pk->formData;
     switch ($menuId) {
+      case 0:
+        $window = new MemberSettingsWindow($this->player);
+        break;
+        
       case 1:
         $window = new ChannelSettingsWindow($this->player);
         break;
