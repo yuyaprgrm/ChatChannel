@@ -43,8 +43,24 @@ class ChannelSettingsWindow extends Window {
   }
 
   public function handle(ModalFormResponsePacket $pk) {
+    if(strpos($pk->formData, "null") !== false) { //バツが押されたら
+      return;
+    }
+
+    $data = json_decode($pk->formData, true);
+
+    if($data[0] === "") { //チャンネル名が入力されていなければ
+      WindowManager::set($this);
+      return;
+    }
+
+    $channel = ChannelManager::getPlayerChannel($this->player);
+    $channel->name = $data[0];
+    $channel->password = $data[1];
+    $channel->limit = $data[2];
+    $channel->sendMessage(Translation::getMessage("channel.changeSettings", ["{%name}" => $this->player->getName()]));
+    $channel->update();
 
   }
-
 
 }
