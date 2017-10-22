@@ -26,6 +26,8 @@ window:
 
   channelMemberManage:
     title: "メンバーの管理"
+    target: "対象の人物"
+    action: "操作"
     kick: "追放する."
     owner: "オーナーにする."
 
@@ -35,4 +37,6 @@ window:
 channel:
   join: "{%name}さんが参加しました"
   quit: "{%name}さんが抜けました"
+  kick: "{%name}さんが追放されました"
   changeSettings: "{%name}さんがチャンネル設定を変更しました"
+  ownerChange: "{%name}さんをオーナーに変更しました"

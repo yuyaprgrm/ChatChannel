@@ -26,6 +26,8 @@ window:
 
   channelMemberManage:
     title: "Manage the members"
+    target: "Target player"
+    action: "Action"
     kick: "Kick the player."
     owner: "Change the owner to the player."
 
@@ -35,4 +37,6 @@ window:
 channel:
   join: "{%name} joined this channel."
   quit: "{%name} quit this channel."
+  kick: "{%name} kicked from this channel."
   changeSettings: "{%name} changed channel settings."
+  ownerChange: "change owner to {%name}."
