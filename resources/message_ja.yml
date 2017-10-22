@@ -40,3 +40,7 @@ channel:
   kick: "{%name}さんが追放されました"
   changeSettings: "{%name}さんがチャンネル設定を変更しました"
   ownerChange: "{%name}さんをオーナーに変更しました"
+
+command:
+  usage: "使い方: 地面を砂糖でたたくとチャットメニューを表示できます"
+  credit: "クレジット: このプラグインはfamima65536によって作成されました"

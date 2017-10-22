@@ -5,6 +5,10 @@ namespace famima65536\chatchannel;
 # Base #
 use pocketmine\plugin\PluginBase;
 
+# Command #
+use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
+
 # Channel #
 use famima65536\chatchannel\channel\PrimaryChannel;
 
@@ -45,6 +49,15 @@ class Main extends PluginBase {
     EventListener::setItemData($itemData["id"], $itemData["damage"]);
     // TODO use Translation.
     $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.enable"));
+  }
+
+  public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
+    if(!strtolower($cmd->getName()) === "chatchannel") {
+      return true;
+    }
+    $sender->sendMessage(Translation::getMessage("command.usage"));
+    $sender->sendMessage(Translation::getMessage("command.credit"));
+    return true;
   }
 
   /**

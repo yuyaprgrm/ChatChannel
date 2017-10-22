@@ -37,6 +37,11 @@ window:
 channel:
   join: "{%name} joined this channel."
   quit: "{%name} quit this channel."
-  kick: "{%name} kicked from this channel."
+  kick: "kicked {%name} from this channel."
   changeSettings: "{%name} changed channel settings."
   ownerChange: "change owner to {%name}."
+
+
+usage:
+  - "Usage: You can display the chat menu when you hit the ground with sugar"
+  - "Credit: This plugin was created by famima 65536"
