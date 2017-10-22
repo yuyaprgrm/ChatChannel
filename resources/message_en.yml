@@ -35,3 +35,4 @@ window:
 channel:
   join: "{%name} joined this channel."
   quit: "{%name} quit this channel."
+  changeSettings: "{%name} changed channel settings."

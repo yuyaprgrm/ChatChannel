@@ -7,17 +7,32 @@ window:
   menu:
     title: "チャンネルメニュー"
     subtitle: "項目を選択してください"
+
   makeChannel:
     title: "チャンネル作成"
     name: "チャンネル名を入力"
     password: "パスワードを入力(空白でなし)"
     memberLimit: "制限人数を入力(0で無制限)"
+
   selectChannel:
     title: "チャンネル選択"
     channels: "チャンネル"
     password: "パスワードを入力"
     passwordError: "パスワードが間違っています"
 
+  manageChannel:
+    title: "チャンネル管理"
+    subtitle: "項目を選択してください"
+
+  channelMemberManage:
+    title: "メンバーの管理"
+    kick: "追放する."
+    owner: "オーナーにする."
+
+  channelSettings:
+    title: "チャンネル設定"
+
 channel:
   join: "{%name}さんが参加しました"
   quit: "{%name}さんが抜けました"
+  changeSettings: "{%name}さんがチャンネル設定を変更しました"
