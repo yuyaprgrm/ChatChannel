@@ -11,7 +11,7 @@ use famima65536\chatchannel\utils\Translation;
 abstract class BaseChannel implements Channel {
 
   public $owner; /** @var Player */
-  
+
   public $name, $password;
   public $id;
 
@@ -33,6 +33,12 @@ abstract class BaseChannel implements Channel {
     $msg = $this->name . " >> " . $msg;
     foreach($this->members as $player) {
       $player->sendMessage($msg);
+    }
+  }
+
+  public function update() {
+    foreach ($this->members as $player) {
+      $player->setDisplayName($player->getName()."§7:".$this->name."§f");
     }
   }
 
