@@ -15,6 +15,7 @@ use famima65536\chatchannel\channel\PrimaryChannel;
 # Utils #
 use famima65536\chatchannel\utils\Translation;
 use famima65536\chatchannel\utils\ChannelManager;
+use famima65536\chatchannel\utils\WindowManager;
 use pocketmine\utils\TextFormat as TF;
 
 /**
@@ -47,7 +48,10 @@ class Main extends PluginBase {
     $itemData = $config->get("menu-item") ?? ["id" => 353, "damage" => 0];
     EventListener::register($this);
     EventListener::setItemData($itemData["id"], $itemData["damage"]);
-    // TODO use Translation.
+
+    //Register WindowManager
+    WindowManager::randomFormId();
+
     $this->getLogger()->info(TF::AQUA.Translation::getMessage("plugin.enable"));
   }
 

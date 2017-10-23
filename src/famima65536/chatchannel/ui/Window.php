@@ -5,6 +5,7 @@ namespace famima65536\chatchannel\ui;
 use pocketmine\Player;
 use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
+use famima65536\chatchannel\utils\WindowManager;
 
 abstract class Window {
 
@@ -23,7 +24,8 @@ abstract class Window {
   public function navigate(bool $process) {
     if($process)$this->process();
     $pk = new ModalFormRequestPacket();
-    $pk->formId = static::$formId;
+    $pk->formId = static::$formId + WindowManager::$randomFormId;
+    var_dump($pk->formId);
     $pk->formData = $this->getFormJson();
     $this->player->dataPacket($pk);
   }
