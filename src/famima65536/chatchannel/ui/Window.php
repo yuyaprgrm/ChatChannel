@@ -25,7 +25,6 @@ abstract class Window {
     if($process)$this->process();
     $pk = new ModalFormRequestPacket();
     $pk->formId = static::$formId + WindowManager::$randomFormId;
-    var_dump($pk->formId);
     $pk->formData = $this->getFormJson();
     $this->player->dataPacket($pk);
   }
