@@ -13,7 +13,7 @@ use famima65536\chatchannel\utils\WindowManager;
 
 class MemberSettingsWindow extends Window {
 
-  public static $formId = 4;
+  public static $formId = 5;
   private $players = []; /** @var string[] */
 
   public function process() {
