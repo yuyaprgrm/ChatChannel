@@ -15,6 +15,7 @@
         }
     ],
     "require-dev": {
-        "pocketmine/pocketmine-mp": "^3.23"
+        "pocketmine/pocketmine-mp": "^3.23",
+        "phpstan/phpstan": "^0.12.99"
     }
 }
