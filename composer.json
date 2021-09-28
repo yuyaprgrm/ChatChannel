@@ -16,7 +16,8 @@
     ],
     "require-dev": {
         "pocketmine/pocketmine-mp": "^3.23",
-        "phpstan/phpstan": "^0.12.99"
+        "phpstan/phpstan": "^0.12.99",
+        "phpunit/phpunit": "^9.5"
     },
   "require": {
     "ext-mbstring": "*"
