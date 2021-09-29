@@ -1,0 +1,9 @@
+{
+    "type": "form",
+    "title": "ChatChannel Menu",
+    "content": "Choose Action",
+    "buttons": [
+        {"text": "Create Channel", "link": "CreateChannelForm"},
+        {"text": "Channel List", "link":  "ChannelListForm"}
+    ]
+}

@@ -14,6 +14,7 @@ use famima65536\chatchannel\system\user\IUserRepository;
 use famima65536\chatchannel\system\user\User;
 use famima65536\chatchannel\system\user\UserId;
 use famima65536\chatchannel\system\user\UserService;
+use famima65536\chatchannel\ui\MenuForm;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\console\ConsoleCommandSender;
@@ -58,9 +59,11 @@ class Main extends PluginBase {
 	}
 
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
-		if($sender instanceof ConsoleCommandSender){
+		if(!$sender instanceof Player){
 			return $this->onCommandByConsole($sender, $command, $label, $args);
 		}
+
+		$sender->sendForm(new MenuForm());
 
 		return false;
 	}
