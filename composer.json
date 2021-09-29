@@ -20,6 +20,7 @@
         "phpunit/phpunit": "^9.5"
     },
   "require": {
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+        "php": "^8.0"
   }
 }
