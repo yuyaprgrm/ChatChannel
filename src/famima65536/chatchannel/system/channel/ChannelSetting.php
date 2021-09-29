@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace famima65536\chatchannel\system\channel;
 
 use famima65536\chatchannel\system\channel\command\SettingChangeCommand;
-use JetBrains\PhpStorm\ArrayShape;
 
 class ChannelSetting {
 
@@ -26,13 +25,42 @@ class ChannelSetting {
 		];
 	}
 
+	private int $maxMember;
+	private bool $isPrivate;
+	private string $password;
+
 	public function __construct(
-		public ?int $maxMember=null,
-		public ?bool $isPrivate=null,
-		public string $password=""
-	){}
+		?int $maxMember=null,
+		?bool $isPrivate=null,
+		string $password=""
+	){
+		$this->maxMember = $maxMember ?? self::$dMaxMember;
+		$this->isPrivate = $isPrivate ?? self::$dIsPrivate;
+		$this->password = $password;
+	}
 
 	public function hasPassword(): bool{
 		return $this->password !== "";
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getMaxMember(): int{
+		return $this->maxMember;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isPrivate(): bool{
+		return $this->isPrivate;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPassword(): string{
+		return $this->password;
 	}
 }

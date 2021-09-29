@@ -4,48 +4,71 @@ declare(strict_types=1);
 namespace famima65536\chatchannel\system\channel;
 
 use ArrayObject;
+use famima65536\chatchannel\system\channel\command\SettingChangeCommand;
 use famima65536\chatchannel\system\user\User;
+use famima65536\chatchannel\system\user\UserId;
 use InvalidArgumentException;
 
-class Channel{
+
+class Channel {
+
+
+	private ChannelId $id;
+	private ChannelName $name;
+	private UserId $owner;
+	private ArrayObject $memberList;
+	private ChannelSetting $setting;
 
 	/**
 	 * @param ChannelId $id
 	 * @param ChannelName $name
-	 * @param User $owner
-	 * @param ArrayObject<int, User> $memberList
+	 * @param UserId $owner
+	 * @param ArrayObject<int, UserId> $memberList
+	 * @param ChannelSetting $setting
 	 */
-	public function __construct(
-        private ChannelId $id, 
-        private ChannelName $name, 
-        private User $owner,
-        private ArrayObject $memberList,
-		private ChannelSetting $setting
-    ){
-    }
+	public function __construct( ChannelId $id,  ChannelName $name,  UserId $owner,  ArrayObject $memberList,  ChannelSetting $setting){
+		$this->id = $id;
+		$this->name = $name;
+		$this->owner = $owner;
+		$this->memberList = $memberList;
+		$this->setting = $setting;
+	}
 
-    public function changeName(ChannelName $name): void{
-        $this->name = $name;
-    }
+	public function changeSetting(SettingChangeCommand $command): void{
+		$this->setting = new ChannelSetting(maxMember: $command->maxMember ?? $this->setting->getMaxMember(), isPrivate: $command->isPrivate ?? $this->setting->isPrivate(), password: $command->password ?? $this->setting->getPassword());
+	}
 
 	/**
-	 * @param User $new
-	 * @throws InvalidArgumentException when new user has already joined channel.
+	 * @param UserId $new
 	 */
-    public function addMember(User $new): void{
+	public function addMember(UserId $new): void{
 		if($this->exists($new)){
 			throw new InvalidArgumentException('this user has already joined this channel.');
 		}
 		$this->memberList->append($new);
-    }
+	}
 
-	public function exists(User $user): bool{
-		foreach($this->memberList as $member){
-			if($user->equals($member))return true;
+	public function exists(UserId $id): bool{
+		foreach($this->memberList as $memberId){
+			if($id->equals($memberId)) return true;
 		}
 
 		return false;
 	}
+
+	public function removeMember(UserId $id): void{
+		if($this->owner === $id){
+			throw new InvalidArgumentException('owner cannot leave from channel');
+		}
+
+		foreach($this->memberList as $offset => $memberId){
+			if($id->equals($memberId)){
+				$this->memberList->offsetUnset($offset);
+				return;
+			}
+		}
+	}
+
 
 	/**
 	 * @return ChannelId
