@@ -28,16 +28,20 @@ class User{
 		return $this->channelId;
 	}
 
+	public function hasJoinedChannel(): bool{
+		return $this->channelId !== null;
+	}
+
 	public function equals(User $other): bool{
 		return $this->getId()->equals($other->getId());
 	}
 
 	/**
-	 * @throws Exception when user is in another channel
+	 * @throws UserHasAlreadyJoinedChannelException when user is in another channel
 	 */
 	public function createChannel(ChannelId $id, ChannelName $name, ChannelSetting $setting): Channel{
 		if($this->channelId !== null){
-			throw new Exception('user has already joined channel');
+			throw new UserHasAlreadyJoinedChannelException('user has already joined channel');
 		}
 
 		$this->channelId = $id;
@@ -46,7 +50,7 @@ class User{
 			$id,
 			$name,
 			$this->id,
-			new ArrayObject([$this->id]),
+			[$this->id],
 			$setting
 		);
 	}

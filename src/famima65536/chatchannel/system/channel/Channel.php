@@ -16,17 +16,18 @@ class Channel {
 	private ChannelId $id;
 	private ChannelName $name;
 	private UserId $owner;
-	private ArrayObject $memberList;
+	/** @var UserId[] */
+	private array $memberList;
 	private ChannelSetting $setting;
 
 	/**
 	 * @param ChannelId $id
 	 * @param ChannelName $name
 	 * @param UserId $owner
-	 * @param ArrayObject<int, UserId> $memberList
+	 * @param array<int, UserId> $memberList
 	 * @param ChannelSetting $setting
 	 */
-	public function __construct( ChannelId $id,  ChannelName $name,  UserId $owner,  ArrayObject $memberList,  ChannelSetting $setting){
+	public function __construct(ChannelId $id, ChannelName $name, UserId $owner, array $memberList, ChannelSetting $setting){
 		$this->id = $id;
 		$this->name = $name;
 		$this->owner = $owner;
@@ -45,7 +46,7 @@ class Channel {
 		if($this->exists($new)){
 			throw new InvalidArgumentException('this user has already joined this channel.');
 		}
-		$this->memberList->append($new);
+		$this->memberList[] = $new;
 	}
 
 	public function exists(UserId $id): bool{
@@ -63,10 +64,14 @@ class Channel {
 
 		foreach($this->memberList as $offset => $memberId){
 			if($id->equals($memberId)){
-				$this->memberList->offsetUnset($offset);
+				unset($this->memberList[$offset]);
 				return;
 			}
 		}
+	}
+
+	public function isFull(): bool{
+		return count($this->memberList) >= $this->setting->getMaxMember();
 	}
 
 
