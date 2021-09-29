@@ -2,6 +2,7 @@
     "name": "famima65536/chat-channel",
     "description": "chat channel plugin for pocketmine-mp",
     "type": "project",
+    "minimum-stability": "dev",
     "license": "LGPL-3.0 License",
     "autoload": {
         "psr-4": {
@@ -15,12 +16,12 @@
         }
     ],
     "require-dev": {
-        "pocketmine/pocketmine-mp": "^3.23",
+        "pocketmine/pocketmine-mp": "4.0.0-BETA3",
         "phpstan/phpstan": "^0.12.99",
         "phpunit/phpunit": "^9.5"
     },
   "require": {
     "ext-mbstring": "*",
-        "php": "^8.0"
+        "php": "^8.0.10"
   }
 }
