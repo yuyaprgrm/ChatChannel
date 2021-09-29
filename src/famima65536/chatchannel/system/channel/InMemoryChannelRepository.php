@@ -17,10 +17,17 @@ class InMemoryChannelRepository implements IChannelRepository {
 	}
 
 	public function find(ChannelId $channelId): ?Channel{
-		return $this->store[$channelId->getValue()] ?? null;
+		return clone $this->store[$channelId->getValue()] ?? null;
 	}
 
 	public function delete(Channel $channel): void{
 		unset($this->store[$channel->getId()->getValue()]);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function findAll(): array{
+		return array_map(fn($x) => clone $x, $this->store);
 	}
 }
