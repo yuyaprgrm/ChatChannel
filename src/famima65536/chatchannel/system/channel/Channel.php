@@ -70,6 +70,14 @@ class Channel {
 		}
 	}
 
+	public function getMemberList(): array{
+		return $this->memberList;
+	}
+
+	public function countMembers(): int{
+		return count($this->memberList);
+	}
+
 	public function isFull(): bool{
 		return count($this->memberList) >= $this->setting->getMaxMember();
 	}
@@ -80,6 +88,17 @@ class Channel {
 	 */
 	public function getId(): ChannelId{
 		return $this->id;
+	}
+
+	/**
+	 * @return ChannelName
+	 */
+	public function getName(): ChannelName{
+		return $this->name;
+	}
+
+	public function getSetting(): ChannelSetting{
+		return $this->setting;
 	}
 
 }

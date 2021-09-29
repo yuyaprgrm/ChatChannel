@@ -27,12 +27,12 @@ class ChannelSetting {
 
 	private int $maxMember;
 	private bool $isPrivate;
-	private string $password;
+	private ?string $password;
 
 	public function __construct(
 		?int $maxMember=null,
 		?bool $isPrivate=null,
-		string $password=""
+		?string $password=null
 	){
 		$this->maxMember = $maxMember ?? self::$dMaxMember;
 		$this->isPrivate = $isPrivate ?? self::$dIsPrivate;
@@ -40,7 +40,7 @@ class ChannelSetting {
 	}
 
 	public function hasPassword(): bool{
-		return $this->password !== "";
+		return $this->password !== null;
 	}
 
 	/**
